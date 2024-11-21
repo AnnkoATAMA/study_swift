@@ -1,21 +1,16 @@
 import SwiftUI
 import CoreMotion
 
-class MotionViewModel: ObservableObject {
+class MotionModel: ObservableObject {
     private let motionManager = CMMotionManager()
     @Published var motionMessage: String = "加速度センサーのデータ待ち..."
-    
-    init() {
-        startAccelerometer()
-    }
     
     func startAccelerometer() {
         guard motionManager.isAccelerometerAvailable else {
             motionMessage = "加速度センサーが使用できません"
             return
         }
-        
-        motionManager.accelerometerUpdateInterval = 0.1 // 更新間隔
+        motionManager.accelerometerUpdateInterval = 0.3 // 更新間隔
         motionManager.startAccelerometerUpdates(to: .main) { [weak self] (data, error) in
             guard let data = data else { return }
             
@@ -25,13 +20,14 @@ class MotionViewModel: ObservableObject {
             
             print("x: \(x), y: \(y), z: \(z)")
             
-            // デバイスの動きを判定してメッセージを更新
-            if abs(x) > 0.5 {
+            if abs(x) > 1.0 {
                 self?.motionMessage = "ふるふる"
-            } else if abs(y) > 0.5 {
+            } else if abs(y) > 1.0 {
                 self?.motionMessage = "ふりふり"
+            } else if abs(z) > 1.0 {
+                self?.motionMessage = "ふらふら"
             } else {
-                self?.motionMessage = "スマホを振って"
+                self?.motionMessage = "静止"
             }
         }
     }

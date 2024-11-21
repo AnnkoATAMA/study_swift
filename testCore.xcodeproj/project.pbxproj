@@ -187,11 +187,12 @@
 				};
 			};
 			buildConfigurationList = E13521022CEB638300CB2CEE /* Build configuration list for PBXProject "testCore" */;
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = E13520FE2CEB638300CB2CEE;
 			minimizedProjectReferenceProxies = 1;
