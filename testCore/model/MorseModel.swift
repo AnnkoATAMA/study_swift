@@ -5,7 +5,7 @@
 //  Created by takumi.matsubara on 2024/11/19.
 //
 
-struct MorseViewModel {
+struct MorseModel {
     private let morseDict: [String: String] = [
         // カタカナ
         ".-":"イ", ".-.-":"ロ", "-...":"ハ", "-.-.":"二", "-..":"ホ",
